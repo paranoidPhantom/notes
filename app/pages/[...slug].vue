@@ -138,6 +138,16 @@ const breadcrumb = findPageBreadcrumb(nav.value, route.path);
         <div class="md overflow-x-auto">
             <ContentRenderer v-if="data" :value="data" />
         </div>
+        <NuxtLink
+            v-if="data.author"
+            :href="
+                data.author.isu
+                    ? `https://my.itmo.ru/persons/${data.author.isu}`
+                    : ''
+            "
+            external
+            >Автор: {{ data.author.name }}</NuxtLink
+        >
     </div>
 </template>
 

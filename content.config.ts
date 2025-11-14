@@ -7,9 +7,14 @@ export default defineContentConfig({
             type: "page",
             source: "**",
             schema: z.object({
+                title: z.string(),
                 lectureVkLink: z.array(z.string()).optional(),
                 lectureYouTubeLink: z.array(z.string()).optional(),
                 index: z.number(),
+                author: z.object({
+                    name: z.string(),
+                    isu: z.number().optional(),
+                }),
             }),
         }),
     },
