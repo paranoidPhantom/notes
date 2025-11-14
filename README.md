@@ -8,5 +8,5 @@
 
 1. Сделайте форк проекта
 2. В папке `content/<id предмета>/<id преподавателя>` создайте файлы с именами `<номер лекции>.md`
-3. Укажите в начале файла заголовок с полями `title`, `lectureVkLink`, `lectureYouTubeLink`, `index`, `author` ([образец](content/linal/popkov/1.md))
+3. Укажите в начале файла заголовок с полями `title`, `lectureVkLink`, `lectureYouTubeLink`, `index`, `author` ([образец](content/linal/popkov/1.md?plain=1))
 4. Сделайте pull request в основной репозиторий
