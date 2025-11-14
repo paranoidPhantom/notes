@@ -7,6 +7,7 @@ const defaultOpen = useCookie<boolean>("sidebar_state");
         <NuxtRouteAnnouncer />
         <SidebarProvider :default-open="defaultOpen">
             <AppSidebar />
+            <AppSearch />
             <NuxtLayout>
                 <NuxtPage />
             </NuxtLayout>

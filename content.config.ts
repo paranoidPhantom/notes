@@ -5,11 +5,11 @@ export default defineContentConfig({
     collections: {
         content: defineCollection({
             type: "page",
-            source: "**/*.md",
+            source: "**",
             schema: z.object({
-                tags: z.array(z.string()),
-                image: z.string(),
-                date: z.date(),
+                lectureVkLink: z.array(z.string()).optional(),
+                lectureYouTubeLink: z.array(z.string()).optional(),
+                index: z.number(),
             }),
         }),
     },
