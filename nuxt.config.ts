@@ -43,6 +43,7 @@ export default defineNuxtConfig({
     site: {
         name: "Конспекты",
         url: "https://notes.hdla.cloud",
+        favicon: "/favicon.svg",
     },
     shadcn: {
         /**
