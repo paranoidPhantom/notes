@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ContentNavigationItem } from "@nuxt/content";
+import { findPageBreadcrumb } from "@nuxt/content/utils";
+
 const route = useRoute();
 const { data, error } = await useAsyncData(`${route.fullPath}`, async () => {
     const page = await queryCollection("content").path(route.path).first();
@@ -31,6 +34,10 @@ syncRef(tocGlobal, toc);
 
 const videoCollapseState = useCookie<boolean>("video-collapse-state");
 const videoTabState = useCookie<string>("video-tab-state");
+
+const nav = useState<ContentNavigationItem[] | undefined>("navigation");
+
+const breadcrumb = findPageBreadcrumb(nav.value, route.path);
 </script>
 
 <template>
@@ -41,16 +48,38 @@ const videoTabState = useCookie<string>("video-tab-state");
             v-model:open="videoCollapseState"
             class="group/collapsible space-y-4"
         >
-            <CollapsibleTrigger>
-                <Button>
-                    <span>Записи лекций</span>
+            <div
+                class="flex items-center justify-between flex-col gap-4 lg:flex-row"
+            >
+                <Breadcrumb>
+                    <BreadcrumbList>
+                        <template
+                            v-for="(item, index) in breadcrumb"
+                            :key="index"
+                        >
+                            <BreadcrumbItem>
+                                {{ item.title }}
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator />
+                        </template>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink :href="route.path">
+                                {{ data.title }}
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+                <CollapsibleTrigger>
+                    <Button>
+                        <span>Записи лекций</span>
 
-                    <Icon
-                        name="material-symbols:chevron-right"
-                        class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
-                    />
-                </Button>
-            </CollapsibleTrigger>
+                        <Icon
+                            name="material-symbols:chevron-right"
+                            class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
+                        />
+                    </Button>
+                </CollapsibleTrigger>
+            </div>
             <CollapsibleContent>
                 <Card class="px-16">
                     <Tabs v-model="videoTabState" default-value="yt">

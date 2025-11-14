@@ -38,7 +38,12 @@ export default defineNuxtConfig({
         "@vueuse/nuxt",
         "@nuxt/icon",
         "@nuxt/scripts",
+        "@nuxtjs/seo",
     ],
+    site: {
+        name: "Конспекты",
+        url: "https://notes.hdla.cloud",
+    },
     shadcn: {
         /**
          * Prefix for all the imported component

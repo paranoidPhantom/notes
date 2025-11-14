@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Toc } from "@nuxt/content";
+import type { ContentNavigationItem, Toc } from "@nuxt/content";
 import { useSidebar } from "./ui/sidebar";
 
 const toc = useState<Toc>("toc");
