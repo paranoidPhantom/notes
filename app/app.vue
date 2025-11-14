@@ -8,6 +8,7 @@ const { data: nav } = await useAsyncData("navigation", () => {
 useState("navigation").value = nav.value;
 useSeoMeta({
     ogImage: "/og.png",
+    description: "допсяш одобряет",
 });
 </script>
 
