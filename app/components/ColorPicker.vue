@@ -17,7 +17,7 @@ const colorMode = useColorMode();
                 <span class="sr-only">Toggle theme</span>
             </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent>
             <DropdownMenuItem @click="colorMode.preference = 'light'">
                 Дневная
             </DropdownMenuItem>
