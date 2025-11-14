@@ -17,6 +17,14 @@ const launchSearch = () => {
     }
 };
 
+const router = useRouter();
+
+router.afterEach(() => {
+    if (sidebar.isMobile.value) {
+        sidebar.setOpenMobile(false);
+    }
+});
+
 const nav = useState<ContentNavigationItem[] | undefined>("navigation");
 </script>
 
