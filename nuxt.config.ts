@@ -2,6 +2,13 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    vue: {
+        compilerOptions: {
+            isCustomElement: (tag) => {
+                return tag.toLowerCase().includes("mjxcontainer");
+            },
+        },
+    },
     compatibilityDate: "2025-07-15",
     devtools: { enabled: true },
 
@@ -30,6 +37,7 @@ export default defineNuxtConfig({
         "shadcn-nuxt",
         "@vueuse/nuxt",
         "@nuxt/icon",
+        "@nuxt/scripts",
     ],
     shadcn: {
         /**
