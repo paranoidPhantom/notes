@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ContentNavigationItem } from "@nuxt/content";
+import type { ContentNavigationItem } from "@nuxt/content";
 import { findPageBreadcrumb } from "@nuxt/content/utils";
 
 const route = useRoute();
