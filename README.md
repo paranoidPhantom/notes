@@ -1,75 +1,12 @@
-# Nuxt Minimal Starter
+# Конспекты
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Это штука для хранения конспектов лекций.
 
-## Setup
+Говорят удобная получилоась.
 
-Make sure to install dependencies:
+### Как загружать свои конспекты
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+1. Сделайте форк проекта
+2. В папке `content/<id предмета>/<id преподавателя>` создайте файлы с именами `<номер лекции>.md`
+3. Укажите в начале файла заголовок с полями `title`, `lectureVkLink`, `lectureYouTubeLink`, `index`, `author` ([образец](content/linal/popkov/1.md))
+4. Сделайте pull request в основной репозиторий
