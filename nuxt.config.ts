@@ -26,6 +26,18 @@ export default defineNuxtConfig({
         },
     },
 
+    // studio: {
+    //     // Studio admin route (default: '/_studio')
+    //     route: "/_studio",
+
+    //     // GitHub repository configuration (owner and repo are required)
+    //     repository: {
+    //         provider: "github", // only GitHub is currently supported
+    //         owner: "paranoidPhantom", // your GitHub username or organization
+    //         repo: "notes", // your repository name
+    //         branch: process.env.VERCEL_GIT_COMMIT_REF || "master", // the branch to commit to (default: main)
+    //     },
+    // },
     app: {
         pageTransition: { name: "page", mode: "out-in" },
     },
@@ -39,6 +51,7 @@ export default defineNuxtConfig({
         "@nuxt/icon",
         "@nuxt/scripts",
         "@nuxtjs/seo",
+        // "nuxt-studio",
     ],
     site: {
         name: "Конспекты",

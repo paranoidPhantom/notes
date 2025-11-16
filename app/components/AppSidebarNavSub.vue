@@ -4,12 +4,18 @@ import type { ContentNavigationItem } from "@nuxt/content";
 defineProps<{
     items: Array<ContentNavigationItem>;
 }>();
+
+const route = useRoute();
 </script>
 
 <template>
     <SidebarMenuSub>
         <SidebarMenuSubItem v-for="item in items" :key="item.path">
-            <SidebarMenuSubButton as-child class="w-full">
+            <SidebarMenuSubButton
+                as-child
+                class="w-full"
+                :class="{ 'bg-secondary': item.path === route.path }"
+            >
                 <NuxtLink
                     :href="item.children ? '' : `${item.path}`"
                     :title="item.title"

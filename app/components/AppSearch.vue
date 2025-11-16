@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Toc, TocLink } from "@nuxt/content";
 import { useMagicKeys } from "@vueuse/core";
+import type { FuseResultMatch } from "fuse.js";
 const open = useState<boolean>("search", () => false);
 
 const { Meta_K, Ctrl_K } = useMagicKeys({
@@ -33,9 +34,12 @@ const {
     params: {
         query: input,
     },
+    watch: false,
 });
 
-const debounceRefresh = useDebounceFn(refresh, 300);
+const debounceRefresh = useDebounceFn(() => refresh(), 200, {
+    maxWait: 1000,
+});
 
 setTimeout(() => {
     if (open.value) refresh();
@@ -49,6 +53,46 @@ const selectLink = (link: string) => {
     input.value = "";
     open.value = false;
     navigateTo(link);
+};
+const matchToSpanSequence = (match: FuseResultMatch) => {
+    if (!match.value) {
+        return [{ text: "", highlight: false }];
+    }
+    const spans: Array<{ text: string; highlight: boolean }> = [];
+    let lastIndex = 0;
+    match.indices.forEach(([start, end]) => {
+        if (!match.value) return;
+        if (lastIndex < start) {
+            let text = match.value.slice(lastIndex, start);
+            if (text.length > 30) {
+                text =
+                    text.slice(0, 15) +
+                    "   ...   " +
+                    text.slice(text.length - 15);
+            }
+            spans.push({
+                text,
+                highlight: false,
+            });
+        }
+        spans.push({
+            text: match.value.slice(start, end + 1),
+            highlight: true,
+        });
+        lastIndex = end + 1;
+    });
+    if (lastIndex < match.value.length) {
+        let text = match.value.slice(lastIndex);
+        if (text.length > 30) {
+            text =
+                text.slice(0, 15) + "   ...   " + text.slice(text.length - 15);
+        }
+        spans.push({
+            text,
+            highlight: false,
+        });
+    }
+    return spans;
 };
 </script>
 
@@ -79,24 +123,44 @@ const selectLink = (link: string) => {
                         value="unused"
                         @select="selectLink(result.item.id)"
                     >
-                        <p class="opacity-90">
-                            <span
-                                v-for="(value, index) in getHighlightedChunks(
-                                    result
-                                )"
-                                :key="index"
-                                :style="{
-                                    'background-color': value.highlighted
-                                        ? 'var(--foreground)'
-                                        : 'transparent',
-                                    color: value.highlighted
-                                        ? 'var(--background)'
-                                        : 'inherit',
-                                }"
+                        <div class="flex flex-col gap-1">
+                            <div
+                                class="text-[12px] opacity-50 flex items-center gap-1 flex-wrap"
                             >
-                                {{ value.text }}
-                            </span>
-                        </p>
+                                <template
+                                    v-for="(title, index) in result.item.titles"
+                                    :key="index"
+                                >
+                                    <Icon
+                                        v-if="index > 0"
+                                        name="mdi:arrow-right"
+                                    />
+                                    <span>{{ title }}</span>
+                                </template>
+                            </div>
+                            <p
+                                v-for="match in result.matches"
+                                :key="match.key"
+                                class="text-sm"
+                            >
+                                <span
+                                    v-for="(
+                                        segment, index
+                                    ) in matchToSpanSequence(match)"
+                                    :key="index"
+                                    :style="{
+                                        'background-color': segment.highlight
+                                            ? 'var(--foreground)'
+                                            : 'transparent',
+                                        color: segment.highlight
+                                            ? 'var(--background)'
+                                            : 'inherit',
+                                    }"
+                                >
+                                    {{ segment.text }}
+                                </span>
+                            </p>
+                        </div>
                     </CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
