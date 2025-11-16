@@ -98,7 +98,7 @@ const matchToSpanSequence = (match: FuseResultMatch) => {
 
 <template>
     <div>
-        <CommandDialog v-model:open="open" @selected-value="console.warn">
+        <CommandDialog v-model:open="open">
             <CommandInput
                 v-model="input"
                 placeholder="Поиск по странице и сайту..."
