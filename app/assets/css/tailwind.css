@@ -146,9 +146,9 @@
         @apply bg-background text-foreground;
         .md {
             mjxcontainer {
+                @apply text-foreground;
                 display: inline-block;
                 font-size: 0.8em;
-                @apply text-muted-foreground;
             }
 
             h1 {
@@ -170,7 +170,7 @@
             }
 
             p {
-                @apply text-muted-foreground leading-7 [&:not(:first-child)]:mt-6;
+                @apply text-foreground leading-7 [&:not(:first-child)]:mt-6;
             }
 
             a {
