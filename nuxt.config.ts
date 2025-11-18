@@ -26,6 +26,9 @@ export default defineNuxtConfig({
         },
     },
 
+    sitemap: {
+        sources: ["/api/__sitemap__/urls"],
+    },
     // studio: {
     //     // Studio admin route (default: '/_studio')
     //     route: "/_studio",
@@ -42,17 +45,17 @@ export default defineNuxtConfig({
         pageTransition: { name: "page", mode: "out-in" },
     },
     modules: [
-      "@nuxt/eslint",
-      "@nuxt/content",
-      "@nuxt/fonts",
-      "@nuxtjs/color-mode",
-      "shadcn-nuxt",
-      "@vueuse/nuxt",
-      "@nuxt/icon",
-      "@nuxt/scripts",
-      // "nuxt-studio",
-      "@nuxtjs/seo",
-      "nuxt-posthog",
+        "@nuxt/eslint",
+        "@nuxt/content",
+        "@nuxt/fonts",
+        "@nuxtjs/color-mode",
+        "shadcn-nuxt",
+        "@vueuse/nuxt",
+        "@nuxt/icon",
+        "@nuxt/scripts",
+        // "nuxt-studio",
+        "@nuxtjs/seo",
+        "nuxt-posthog",
     ],
     site: {
         name: "Конспекты",
