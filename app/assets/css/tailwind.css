@@ -118,7 +118,7 @@
 }
 
 .dark .md img {
-    filter: invert(0.98) sepia(1) hue-rotate(174deg);
+    filter: invert(0.98) sepia(1) hue-rotate(174deg) contrast(1.4);
     opacity: 0.9;
 }
 
@@ -132,10 +132,11 @@
 .page-enter-from,
 .page-leave-to {
     opacity: 0;
+    translate: 3rem 0;
 }
 .page-enter-active,
 .page-leave-active {
-    transition: opacity 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 @layer base {
