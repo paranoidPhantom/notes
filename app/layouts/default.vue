@@ -5,7 +5,7 @@
         >
             <SidebarTrigger />
         </header>
-        <main class="p-8">
+        <main class="p-8 overflow-hidden">
             <slot />
         </main>
     </div>

@@ -43,7 +43,7 @@ const breadcrumb = findPageBreadcrumb(nav.value, route.path);
 <template>
     <div v-if="data" class="space-y-4">
         <Collapsible
-            v-if="data.lectureYouTubeLink && data.lectureVkLink"
+            v-if="data.lectureYouTubeLink || data.lectureVkLink"
             id="recordings"
             v-model:open="videoCollapseState"
             class="group/collapsible space-y-4"
@@ -82,10 +82,20 @@ const breadcrumb = findPageBreadcrumb(nav.value, route.path);
             </div>
             <CollapsibleContent>
                 <Card class="px-16">
-                    <Tabs v-model="videoTabState" default-value="yt">
+                    <Tabs
+                        v-model="videoTabState"
+                        :default-value="data.lectureYouTubeLink ? 'yt' : 'vk'"
+                    >
                         <TabsList>
-                            <TabsTrigger value="yt"> YouTube </TabsTrigger>
-                            <TabsTrigger value="vk"> VK Видео </TabsTrigger>
+                            <TabsTrigger
+                                v-if="data.lectureYouTubeLink"
+                                value="yt"
+                            >
+                                YouTube
+                            </TabsTrigger>
+                            <TabsTrigger v-if="data.lectureVkLink" value="vk">
+                                VK Видео
+                            </TabsTrigger>
                         </TabsList>
                         <TabsContent value="yt">
                             <Carousel>
