@@ -2,7 +2,10 @@
 const defaultOpen = useCookie<boolean>("sidebar_state");
 
 const { data: nav } = await useAsyncData("navigation", () => {
-    return queryCollectionNavigation("content").order("index", "ASC");
+    return queryCollectionNavigation("content", ["lectureYouTubeLink"]).order(
+        "index",
+        "ASC"
+    );
 });
 
 useState("navigation").value = nav.value;

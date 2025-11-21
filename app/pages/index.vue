@@ -47,8 +47,16 @@ toc.value = undefined;
                         v-for="link in course.children"
                         :to="link.path"
                         :key="link.path"
+                        class="course-link"
                     >
-                        <Card class="px-4">
+                        <Card
+                            class="px-4 h-full relative -z-20 overflow-hidden"
+                        >
+                            <img
+                                :src="`https://i.ytimg.com/vi/${extractYouTubeId(link.lectureYouTubeLink[0])}/hqdefault.jpg`"
+                                alt=""
+                                class="transition-all absolute left-0 top-0 -z-10 h-full w-full object-cover opacity-20 blur-sm"
+                            />
                             {{ link.title }}
                         </Card>
                     </NuxtLink>
@@ -64,3 +72,15 @@ toc.value = undefined;
         </NuxtLink>
     </div>
 </template>
+
+<style lang="scss">
+.course-link {
+    &:hover {
+        img {
+            opacity: 0.3;
+            scale: 1.3;
+            filter: blur(0);
+        }
+    }
+}
+</style>
