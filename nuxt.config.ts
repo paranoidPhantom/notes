@@ -20,6 +20,10 @@ export default defineNuxtConfig({
         build: {
             transformers: ["@/transformers/split-latex"],
             markdown: {
+                highlight: {
+                    theme: "catppuccin-mocha",
+                    langs: ["python"],
+                },
                 remarkPlugins: { "remark-math": {} },
                 rehypePlugins: { "rehype-mathjax": {} },
             },

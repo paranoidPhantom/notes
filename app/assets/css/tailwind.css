@@ -118,7 +118,7 @@
 }
 
 .dark .md img {
-    filter: invert(0.98) sepia(1) hue-rotate(174deg) contrast(1.4);
+    filter: invert(0.98) sepia(1) hue-rotate(174deg);
     opacity: 0.9;
 }
 
@@ -194,6 +194,10 @@
 
             table {
                 @apply w-full;
+            }
+
+            pre {
+                @apply my-4;
             }
 
             thead tr {
