@@ -34,8 +34,9 @@ export default defineNuxtConfig({
         sources: ["/api/__sitemap__/urls"],
     },
     routeRules: {
-        "/**": { isr: true },
-        "/api/**": { isr: false },
+        "/**": { prerender: true },
+        "/api/**": { prerender: false },
+        "/auth/**": { prerender: false },
     },
     // studio: {
     //     // Studio admin route (default: '/_studio')
