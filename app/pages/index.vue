@@ -26,9 +26,6 @@ toc.value = undefined;
             />
             <VanishingInput />
         </Card>
-        <p class="opacity-30 mt-4">
-            Я сделал эту штуку за 10 часов не судите строго
-        </p>
         <template v-for="sub in data" :key="sub.path">
             <h2
                 class="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"
