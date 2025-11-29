@@ -29,6 +29,7 @@
     "lucide-vue-next": "^0.553.0",
     "motion-v": "^1.7.4",
     "nuxt": "^4.2.1",
+    "nuxt-auth-utils": "^0.5.25",
     "nuxt-posthog": "1.6.3",
     "ogl": "^1.0.11",
     "rehype-mathjax": "^7.1.0",
