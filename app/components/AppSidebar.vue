@@ -26,6 +26,26 @@ router.afterEach(() => {
 });
 
 const nav = useState<ContentNavigationItem[] | undefined>("navigation");
+
+const auth = useUserSession();
+
+const authOptions = [
+    {
+        route: "/auth/yandex",
+        label: "Yandex",
+        icon: "tabler:brand-yandex",
+    },
+    {
+        route: "/auth/google",
+        label: "Google",
+        icon: "tabler:brand-google",
+    },
+    {
+        route: "/auth/github",
+        label: "GitHub",
+        icon: "tabler:brand-github",
+    },
+];
 </script>
 
 <template>
@@ -146,6 +166,51 @@ const nav = useState<ContentNavigationItem[] | undefined>("navigation");
                 </SidebarMenu>
             </SidebarGroup>
         </SidebarContent>
+        <SidebarFooter v-if="auth.ready">
+            <div
+                v-if="!auth.loggedIn.value"
+                class="flex flex-col gap-3 items-center"
+            >
+                <hr class="w-full" />
+                <p class="text-muted-foreground">Авторизация</p>
+                <ButtonGroup class="w-full">
+                    <Button
+                        v-for="authOption in authOptions"
+                        :key="authOption.route"
+                        :title="authOption.label"
+                        class="w-full shrink"
+                        variant="outline"
+                        @click="auth.openInPopup(authOption.route)"
+                    >
+                        <Icon :name="authOption.icon" />
+                    </Button>
+                </ButtonGroup>
+            </div>
+            <Popover v-else-if="auth.user.value">
+                <PopoverTrigger as-child>
+                    <Button variant="outline">
+                        <Avatar class="size-6">
+                            <AvatarImage
+                                :src="auth.user.value.avatarUrl"
+                                alt="User Avatar"
+                            />
+                            <AvatarFallback>{{
+                                auth.user.value.name
+                            }}</AvatarFallback>
+                        </Avatar>
+                        <span>{{ auth.user.value.name }}</span>
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent class="w-80">
+                    <div class="grid gap-4">
+                        <Button variant="outline" @click="auth.clear()">
+                            <Icon name="mdi:logout" class="mr-2" />
+                            Выйти
+                        </Button>
+                    </div>
+                </PopoverContent>
+            </Popover>
+        </SidebarFooter>
     </Sidebar>
 </template>
 
