@@ -156,7 +156,7 @@ const breadcrumb = findPageBreadcrumb(nav.value, route.path);
                     : ''
             "
             external
-            >Автор: {{ data.author.name }}</NuxtLink
+            >Автор конспекта: {{ data.author.name }}</NuxtLink
         >
     </div>
 </template>
