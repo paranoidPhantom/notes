@@ -95,7 +95,7 @@ const nav = useState<ContentNavigationItem[] | undefined>("navigation");
                     >
                         <SidebarMenuItem>
                             <CollapsibleTrigger as-child>
-                                <SidebarMenuButton tooltip="Конеспекты">
+                                <SidebarMenuButton tooltip="Конспекты">
                                     <Icon
                                         class="shrink-0 mr-1"
                                         name="streamline-freehand:content-paper-edit"
